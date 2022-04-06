@@ -29,4 +29,19 @@ public class MemberDAOImpl implements MemberDAO {
 		return sql.selectOne(namespace + ".login", vo);		
 	}
 
+
+	@Override
+	public void modify(MemberVO vo) throws Exception {
+		
+		sql.update(namespace + ".modify", vo);
+		
+	}
+
+
+	@Override
+	public void withdrawal(MemberVO vo) throws Exception {
+		
+		sql.delete(namespace + ".withdrawal", vo);
+	}
+
 }

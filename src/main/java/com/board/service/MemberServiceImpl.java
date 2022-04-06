@@ -26,4 +26,16 @@ public class MemberServiceImpl implements MemberService {
 		return dao.login(vo);
 	}
 
+	@Override
+	public void modify(MemberVO vo) throws Exception {
+		
+		dao.modify(vo);
+		
+	}
+
+	@Override
+	public void withdrawal(MemberVO vo) throws Exception {
+		dao.withdrawal(vo);
+	}
+
 }

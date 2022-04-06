@@ -69,4 +69,53 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	
+	//회원정보 get
+	@GetMapping("/modify")
+	public void getModify() throws Exception{
+		logger.info("modify()");
+	}
+	
+	//회원정보 post
+	@PostMapping("/modify")
+	public String postModify(HttpSession session, MemberVO vo) throws Exception{
+		logger.info("postModify()");
+		
+		service.modify(vo);
+//		
+//		session.invalidate();
+		
+		logout(session);
+		
+		return "redirect:/";
+	}
+	
+	//회원탈퇴 get
+	@GetMapping("/withdrawal")
+	public void getWithdrawal()throws Exception{
+		logger.info("withdrawal()");
+	}
+	
+	//회원탈퇴 post
+	@PostMapping("/withdrawal")
+	public String postWithdrawal(HttpSession session, MemberVO vo, RedirectAttributes rttr) throws Exception{
+		logger.info("withdrawal()");
+		
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		
+		String oldPass = member.getUserPass();
+		String newPass = vo.getUserPass();
+		
+		if(!(oldPass.equals(newPass))) {
+			rttr.addFlashAttribute("msg", false);
+			return "redirect:/member/withdrawal";
+		} 
+		
+		service.withdrawal(vo);
+		
+		logout(session);
+		
+		return "redirect:/";
+			
+	}
 }
