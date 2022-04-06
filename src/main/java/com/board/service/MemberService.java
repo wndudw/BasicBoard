@@ -15,4 +15,7 @@ public interface MemberService {
 	
 	//회원탈퇴
 	public void withdrawal(MemberVO vo) throws Exception;
+	
+	//아이디 확인
+	public MemberVO idCheck(String userId) throws Exception;
 }

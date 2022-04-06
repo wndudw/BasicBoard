@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.board.domain.MemberVO;
@@ -117,5 +118,22 @@ public class MemberController {
 		
 		return "redirect:/";
 			
+	}
+	
+	//아이디확인
+	@ResponseBody
+	@PostMapping("/idCheck")
+	public int postIdCheck(HttpServletRequest request) throws Exception{
+		logger.info("postIdCheck()");
+		
+		String userId = request.getParameter("userId");
+		MemberVO idCheck = service.idCheck(userId);
+		
+		int result = 0;
+		
+		if(idCheck != null) {
+			result = 1;
+		}
+		return result;
 	}
 }

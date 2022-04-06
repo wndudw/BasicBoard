@@ -29,4 +29,11 @@
 		DELETE FROM myMember
 		WHERE userId=#{userId} AND userPass=#{userPass}
 	</delete>
+	
+	<!-- 아이디확인 -->
+	<select id="idCheck" resultType="com.board.domain.MemberVO">
+		SELECT userId 
+		FROM myMember
+		WHERE userId=#{userId}
+	</select>
 </mapper>
